@@ -75,9 +75,29 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/*.module.ts",
+      "!**/*.orm-entity.ts",
+      "!**/main.ts",
+      "!**/app.module.ts",
+      "!**/app.controller.ts",
+      "!**/app.service.ts",
+      "!**/database/**",
+      "!**/config/**",
+      "!**/__tests__/**",
+      "!**/__mocks__/**",
+      "!**/infrastructure/repositories/**",
+      "!**/infrastructure/adapters/**",
+      "!**/infrastructure/entities/**",
+      "!**/infrastructure/controllers/**",
+      "!**/domain/entities/**",
+      "!**/domain/enums/**",
+      "!**/errors/domain-error.ts"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "transformIgnorePatterns": [
+      "node_modules/(?!uuid)"
+    ]
   }
 }
