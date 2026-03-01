@@ -9,8 +9,14 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Security headers (OWASP)
-  app.use(helmet());
+  // Security headers (OWASP) - configurado para HTTP
+  app.use(helmet({
+    contentSecurityPolicy: false,
+    strictTransportSecurity: false,
+    crossOriginOpenerPolicy: false,
+    crossOriginEmbedderPolicy: false,
+    originAgentCluster: false,
+  }));
 
   // Validación global de DTOs
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
@@ -32,7 +38,5 @@ async function bootstrap() {
   await seedProducts(dataSource);
 
   await app.listen(process.env.PORT ?? 3000);
-  console.log(`Application running on: http://localhost:${process.env.PORT ?? 3000}`);
-  console.log(`Swagger docs: http://localhost:${process.env.PORT ?? 3000}/api/docs`);
 }
 bootstrap();
