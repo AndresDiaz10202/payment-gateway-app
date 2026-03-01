@@ -1,0 +1,42 @@
+{
+  "family": "payment-gateway-backend",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::245209218323:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "backend",
+      "image": "245209218323.dkr.ecr.us-east-1.amazonaws.com/payment-gateway-backend:latest",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        { "name": "PORT", "value": "3000" },
+        { "name": "DB_HOST", "value": "payment-gateway-db.cm5omc2801ls.us-east-1.rds.amazonaws.com" },
+        { "name": "DB_PORT", "value": "5432" },
+        { "name": "DB_USERNAME", "value": "postgres" },
+        { "name": "DB_PASSWORD", "value": "PaymentGw2026!" },
+        { "name": "DB_NAME", "value": "payment_app" },
+        { "name": "SANDBOX_URL", "value": "https://api-sandbox.co.uat.wompi.dev/v1" },
+        { "name": "PUBLIC_KEY", "value": "pub_stagtest_g2u0HQd3ZMh05hsSgTS2lUV8t3s4mOt7" },
+        { "name": "PRIVATE_KEY", "value": "prv_stagtest_5i0ZGIGiFcDQifYsXxvsny7Y37tKqFWg" },
+        { "name": "EVENTS_SECRET", "value": "stagtest_events_2PDUmhMywUkvb1LvxYnayFbmofT7w39N" },
+        { "name": "INTEGRITY_SECRET", "value": "stagtest_integrity_nAIBuqayW70XpUqJS4qf4STYiISd89Fp" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/payment-gateway-backend",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "essential": true
+    }
+  ]
+}
