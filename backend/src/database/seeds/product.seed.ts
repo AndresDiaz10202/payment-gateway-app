@@ -33,18 +33,18 @@ export async function seedProducts(dataSource: DataSource): Promise<void> {
       imageUrl: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mba15-midnight-select-202306?wid=904&hei=840&fmt=jpeg',
     },
     {
-      name: 'Sony WH-1000XM5',
+      name: 'AirPods Max',
       description: 'Audífonos inalámbricos con cancelación de ruido líder en la industria, 30 horas de batería, audio Hi-Res.',
       price: 189900000, // $1,899,000 COP en centavos
       stock: 25,
-      imageUrl: 'https://store.sony.com.co/cdn/shop/files/WH-1000XM5_B_hero_1.jpg',
+      imageUrl: 'https://www.apple.com/v/airpods-max/j/images/overview/bento/midnight/bento_1_airpod_max_midnight__4jy1tkqh9qay_xlarge_2x.jpg',
     },
     {
-      name: 'iPad Pro M4',
-      description: 'Apple iPad Pro 11 pulgadas con chip M4, pantalla Ultra Retina XDR, 256GB, compatible con Apple Pencil Pro.',
+      name: 'iPad Pro M5',
+      description: 'Apple iPad Pro 11 pulgadas con chip M5, pantalla Ultra Retina XDR, 256GB, compatible con Apple Pencil Pro.',
       price: 549900000, // $5,499,000 COP en centavos
       stock: 12,
-      imageUrl: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-finish-select-202405-11inch?wid=940&hei=1112&fmt=p-jpg',
+      imageUrl: 'https://www.apple.com/v/ipad-pro/av/images/overview/closer-look/silver/slide_1A__cxvssgdj2v6u_large_2x.jpg',
     },
   ];
 

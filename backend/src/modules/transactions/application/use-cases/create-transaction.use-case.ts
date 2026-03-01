@@ -116,7 +116,7 @@ export class CreateTransactionUseCase {
 
       transaction.externalTransactionId = paymentResult.id;
       return Result.ok(transaction);
-    } catch (error) {
+    } catch (error: any) {
       await this.transactionRepository.updateStatus(
         transaction.id,
         TransactionStatus.ERROR,
