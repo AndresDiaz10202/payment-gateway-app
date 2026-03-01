@@ -33,6 +33,9 @@ import { DeliveryModule } from './modules/deliveries/delivery.module';
           DeliveryOrmEntity,
         ],
         synchronize: true,
+        ssl: configService.get('DB_HOST')?.includes('rds.amazonaws.com')
+          ? { rejectUnauthorized: false }
+          : false,
       }),
     }),
     ProductModule,

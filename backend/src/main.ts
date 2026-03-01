@@ -4,9 +4,13 @@ import { DataSource } from 'typeorm';
 import { seedProducts } from './database/seeds/product.seed';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Security headers (OWASP)
+  app.use(helmet());
 
   // Validación global de DTOs
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));

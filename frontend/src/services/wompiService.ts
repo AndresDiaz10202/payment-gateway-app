@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export async function getPublicConfig() {
   const response = await axios.get(`${API_URL}/api/config/public-key`);
