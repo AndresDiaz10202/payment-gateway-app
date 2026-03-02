@@ -18,14 +18,9 @@ function App() {
   const handleCardDataReady = async (cardData: CardData) => {
     setTokenizing(true);
     try {
-      // 1. Obtener public key y sandbox URL del backend
       const config = await getPublicConfig();
-
-      // 2. Obtener acceptance token de Wompi
       const acceptanceToken = await getAcceptanceToken(config.sandboxUrl, config.publicKey);
       dispatch(setAcceptanceToken(acceptanceToken));
-
-      // 3. Tokenizar tarjeta directamente con Wompi (nunca pasa por nuestro backend)
       const token = await tokenizeCard(config.sandboxUrl, config.publicKey, {
         number: cardData.number.replace(/\s/g, ''),
         cvc: cardData.cvc,
@@ -42,23 +37,45 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ background: '#0a0a0a' }}>
       {currentStep === 1 && <ProductPage />}
-
       {currentStep === 2 && <CheckoutModal onCardDataReady={handleCardDataReady} />}
-
       {currentStep === 3 && <SummaryBackdrop />}
-
       {currentStep === 4 && <TransactionStatus />}
 
       {tokenizing && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-8 text-center">
-            <div className="w-10 h-10 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-600">Procesando datos de tarjeta...</p>
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center"
+          style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(20px)' }}
+        >
+          <div className="text-center">
+            <div className="relative w-20 h-20 mx-auto mb-6">
+              <div
+                className="w-20 h-20 rounded-full border-4 border-transparent"
+                style={{
+                  borderTopColor: '#6366f1',
+                  borderRightColor: '#8b5cf6',
+                  animation: 'spin 1s linear infinite',
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-2xl">🔐</span>
+              </div>
+            </div>
+            <p className="text-base font-medium" style={{ color: '#fff' }}>Asegurando tu pago</p>
+            <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.4)' }}>
+              Tokenizando datos de forma segura...
+            </p>
           </div>
         </div>
       )}
+
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        * { box-sizing: border-box; }
+        body { margin: 0; }
+        ::placeholder { color: rgba(255,255,255,0.2) !important; }
+      `}</style>
     </div>
   );
 }
