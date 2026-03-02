@@ -7,8 +7,8 @@ Aplicación web FullStack (SPA + API Backend) que simula un e-commerce con pasar
 | Recurso       | URL                                                                       |
 |---------------|---------------------------------------------------------------------------|
 | Frontend (S3) | http://payment-gateway-frontend-245209.s3-website-us-east-1.amazonaws.com |
-| Backend API   | http://54.145.48.67:3000/api/products                                    |
-| Swagger Docs  | http://54.145.48.67:3000/api/docs                                        |
+| Backend API   | http://107.20.106.197:3000/api/products                                    |
+| Swagger Docs  | http://107.20.106.197:3000/api/docs                                        |
 
 ## Stack Tecnológico
 
